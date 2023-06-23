@@ -9,5 +9,5 @@ esx scoreboard script for fivem
 
 <hr>
 <br>
-<img src="https://imgur.com/a/yW1XBYt" />
+<img src="https://i.imgur.com/dIsYaJI.png" />
 
