@@ -1,0 +1,212 @@
+<html>
+
+<head>
+	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	<script src="nui://mtsh-scoreboard/html/listener.js" type="text/javascript"></script>
+	<title>mtsh-scoreboard</title>
+	<link href="https://fonts.googleapis.com/css?family=Heebo&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+		integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js"></script>
+	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			overflow: hidden;
+			font-family: 'Bai Jamjuree', sans-serif;
+		}
+
+		#wrap {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			text-align: center;
+			animation: slide-in 0.5s ease-out;
+
+		}
+
+		@keyframes slide-in {
+			0% {
+				transform: translateY(-100%);
+				opacity: 0;
+			}
+
+			100% {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+
+		.scoreboard {
+			background-color: rgba(20, 20, 20, 0.705);
+			color: #fff;
+			position: relative;
+			width: 400px;
+			padding: 50px 40px;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+			border-bottom: 4px solid;
+			border-image: linear-gradient(0.25turn, #11998e, #38ef7d);
+			border-image-slice: 1;
+			overflow: hidden;
+		}
+
+
+
+		.header {
+			font-size: 24px;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+
+		.section {
+			margin-bottom: 10px;
+			text-align: center;
+		}
+
+		.section-title {
+			font-size: 20px;
+			text-transform: uppercase;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+
+		.section-content {
+			font-size: 16px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 10px;
+		}
+
+		.section-content i {
+			margin-right: 15px;
+		}
+
+		.section-content span {
+			margin-right: 15px;
+		}
+
+		hr {
+			border: 0;
+			margin: 10px 0;
+		}
+
+		.player-count {
+			font-size: 16px;
+			text-align: center;
+			margin-bottom: 10px;
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			right: 0;
+		}
+
+		.player-count span {
+			font-weight: bold;
+		}
+
+		.server-uptime {
+			font-size: 14px;
+			text-align: center;
+		}
+
+		.server-uptime span {
+			font-weight: bold;
+		}
+
+		li {
+
+			list-style-type: none;
+
+		}
+
+		.linijka {
+			border-left: 3px solid;
+			border-image: linear-gradient(0.55turn, #11998e, #38ef7d);
+			border-image-slice: 1;
+			height: 150px;
+			position: absolute;
+			left: 5%;
+			margin-left: -3px;
+			top: 150;
+		}
+
+		.linijka2 {
+
+			border-right: 3px solid;
+			border-image: linear-gradient(0.55turn, #11998e, #38ef7d);
+			border-image-slice: 1;
+			height: 150px;
+			position: absolute;
+			right: 5%;
+			margin-right: -3px;
+			top: 150;
+
+
+		}
+	</style>
+</head>
+
+<body>
+	<div id="wrap" style="display: none;">
+		<div class="scoreboard">
+			<div class="header">mtsh-scoreboard</div>
+			<img src="./img/fivem.png" alt="xD" width="96" height="96">
+			<hr>
+			<div class="section">
+				<div class="section-title">SŁUŻBY</div>
+				<div class="section-content">
+					<i class="fas fa-user-police"></i>
+					<span>SASP</span>
+					<span id="police" style="color: limegreen; font-weight: bold;">0</span>
+				</div>
+				<div class="section-content">
+					<i class="fas fa-user-doctor"></i>
+					<span>SAMS</span>
+					<span id="ems" style="color: limegreen; font-weight: bold;">0</span>
+				</div>
+				<div class="section-content">
+					<i class="fa-solid fa-wrench"></i>
+					<span>LSC</span>
+					<span id="mecano" style="color: limegreen; font-weight: bold;">0</span>
+				</div>
+			</div>
+			<hr>
+			<div class="linijka"></div>
+			<div class="linijka2"></div>
+			<div class="section">
+				<div class="section-title">PRACA</div>
+				<div class="section-content">
+					<i class="fas fa-user"></i>
+					<span id="praca">Bezrobotny/a</span>
+				</div>
+				<div class="section-content">
+					<i class="fas fa-user"></i>
+					<span id="praca2">Bezrobotny/a</span>
+				</div>
+
+			</div>
+			<hr>
+			<div class="player-count">
+				<i class="fas fa-user-group"></i>
+				Gracze: <span id="player_count">0</span>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
