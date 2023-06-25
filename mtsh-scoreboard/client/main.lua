@@ -20,41 +20,43 @@ ESX = nil
 
 Citizen.CreateThread(function()
 	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		TriggerEvent('one:getsharedobject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
 
 	Citizen.Wait(2000)
 	ESX.TriggerServerCallback('mtsh-scoreboard:getcP', function(cP)
 		UpdatePlayerTable(cP)
+		Citizen.Wait(5000)
+		playerData = ESX.GetPlayerData()
 	end)
 end)
 
 
 RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(xPlayer)
-	local data = xPlayer
+AddEventHandler('esx:playerLoaded', function(playerData)
+	local data = playerData
 	ESX.PlayerData = playerData
 	local job = data.job
 	SendNUIMessage({
 		action = "updateJob", 
-		praca = ESX.PlayerData.job.label.." - "..ESX.PlayerData.job.grade_label
+		praca = job.label.." - "..job.grade_label
 	});
 
 	SendNUIMessage({
 		action = "updateJob2", 
-		praca2 = ESX.PlayerData.thirdjob.label.." - "..ESX.PlayerData.thirdjob.grade_label
+		praca2 = thirdjob.label.." - "..thirdjob.grade_label
 	});
 end)
 
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
-	SendNUIMessage({action = "updatePraca", praca = job.label.." - "..job.grade_label})
+	SendNUIMessage({action = "updateJob", praca = job.label.." - "..job.grade_label})
 end)
 
 RegisterNetEvent('esx:setThirdJob')
 AddEventHandler('esx:setThirdJob', function(thirdjob)
-	SendNUIMessage({action = "updatePraca2", praca2 = thirdjob.label.." - "..thirdjob.grade_label})
+	SendNUIMessage({action = "updateJob2", praca2 = thirdjob.label.." - "..thirdjob.grade_label})
 end)
 
 
