@@ -4,11 +4,10 @@ var visable = false;
 $(function () {
 	window.addEventListener('message', function (event) {
 
-		if (event.data.action == "updatePraca"){
+		if (event.data.action == 'updateJob') {
 			$('#praca').html(event.data.praca);
 		}
-
-		if (event.data.action == "updatePraca2"){
+		if (event.data.action == 'updateJob2') {
 			$('#praca2').html(event.data.praca2);
 		}
 
@@ -62,8 +61,8 @@ $(function () {
 				break;
 
 			case 'updateServerInfo':
-				if (event.data.maxPlayers) {
-					$('#max_players').html(event.data.maxPlayers);
+				if (event.data.maplayerDatas) {
+					$('#max_players').html(event.data.maplayerDatas);
 				}
 
 				if (event.data.uptime) {
